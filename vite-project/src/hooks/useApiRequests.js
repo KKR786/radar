@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import useLocationToCoordinates from "../hooks/useLocationToCoordinates";
-import WeatherData from "./WeatherData";
+import useWeatherData from "../hooks/useWeatherData";
 import usePromptToLocation from "../hooks/usePromptToLocation";
 import WeatherDescript from "./WeahterDescript";
 
@@ -26,7 +26,7 @@ const useApiRequests = (prompt) => {
         );
         setLocationData(locationDataRes);
 
-        const weatherDataRes = await WeatherData(locationDataRes);
+        const weatherDataRes = await useWeatherData(locationDataRes);
         setWeatherData(weatherDataRes);
 
         const weatherDescriptRes = await WeatherDescript(
