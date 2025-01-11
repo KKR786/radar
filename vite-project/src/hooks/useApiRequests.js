@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import LocationToCoordinates from "./LocationToCoordinates";
+import useLocationToCoordinates from "../hooks/useLocationToCoordinates";
 import WeatherData from "./WeatherData";
-import PromptToLocation from "./PromptToLocation";
+import usePromptToLocation from "../hooks/usePromptToLocation";
 import WeatherDescript from "./WeahterDescript";
 
 const useApiRequests = (prompt) => {
@@ -18,10 +18,10 @@ const useApiRequests = (prompt) => {
       if (!prompt) return; // return if prompt is null or undefined
 
       try {
-        const promptDataRes = await PromptToLocation(prompt);
+        const promptDataRes = await usePromptToLocation(prompt);
         setPromptData(promptDataRes);
 
-        const locationDataRes = await LocationToCoordinates(
+        const locationDataRes = await useLocationToCoordinates(
           promptDataRes.locationString
         );
         setLocationData(locationDataRes);
